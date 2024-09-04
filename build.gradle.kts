@@ -21,6 +21,9 @@ val gitVersion: Closure<String> by extra
 
 val pluginVersion: String by project.ext
 
+val sqliteVersion = "3.46.1.0"
+val protocolVersion = "5.1.0"
+
 repositories {
     mavenCentral()
     maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
@@ -33,32 +36,30 @@ configurations["implementation"].extendsFrom(shadowImplementation)
 dependencies {
     shadowImplementation(kotlin("stdlib"))
     compileOnly("org.spigotmc:spigot-api:$pluginVersion-R0.1-SNAPSHOT")
+    compileOnly("com.comphenix.protocol:ProtocolLib:$protocolVersion") // パケット操作
+    implementation("org.xerial:sqlite-jdbc:$sqliteVersion") // SQLデータベース
 }
 
 configure<BukkitPluginDescription> {
-    main = "@group@.Main"
+    main = "com.github.ringoame196_s_mcPlugin.Main"
     version = pluginVersion
     apiVersion = "1." + pluginVersion.split(".")[1]
-    author = "@author@"
-    /*
-    コマンド追加用
+    author = "ringoame196_s_mcPlugin"
+
     commands {
-        register("test") {
-        description = "This is a test command!"
-        aliases = listOf("t")
-        permission = "testplugin.test"
-        usage = "Just run the command!"
+        register("bbdisplay") {
+        description = "バリアブロックの表示関連のコマンド"
+        usage = "/bbdisplay set <ブロック名>"
         }
     }
-    */
 }
 
 tasks.withType<ShadowJar> {
     configurations = listOf(shadowImplementation)
     archiveClassifier.set("")
-    relocate("kotlin", "@group@.libs.kotlin")
-    relocate("org.intellij.lang.annotations", "@group@.libs.org.intellij.lang.annotations")
-    relocate("org.jetbrains.annotations", "@group@.libs.org.jetbrains.annotations")
+    relocate("kotlin", "com.github.ringoame196_s_mcPlugin.libs.kotlin")
+    relocate("org.intellij.lang.annotations", "com.github.ringoame196_s_mcPlugin.libs.org.intellij.lang.annotations")
+    relocate("org.jetbrains.annotations", "com.github.ringoame196_s_mcPlugin.libs.org.jetbrains.annotations")
 }
 
 tasks.named("build") {
