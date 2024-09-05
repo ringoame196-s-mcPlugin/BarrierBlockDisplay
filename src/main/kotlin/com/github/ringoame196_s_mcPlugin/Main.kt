@@ -9,7 +9,9 @@ class Main : JavaPlugin() {
     override fun onEnable() {
         super.onEnable()
         val plugin = this
-        server.pluginManager.registerEvents(Events(), plugin)
+        saveDefaultConfig() // configファイル生成
+        saveResource("data.yml", false) // dataファイルを生成
+        server.pluginManager.registerEvents(PlayerMoveEvent(plugin), plugin)
         val command = getCommand("bbdisplay")
         command!!.setExecutor(Command())
         command.tabCompleter = TabCompleter()
