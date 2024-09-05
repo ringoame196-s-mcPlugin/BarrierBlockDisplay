@@ -3,6 +3,8 @@
 ## プラグイン説明
 バリアブロックを表示する
 
+https://github.com/user-attachments/assets/a96a8b10-a065-4032-b527-8dd8fb0cb16e
+
 ## コマンド
 /bbdisplay display (半径) - 指定した半径内のバリアブロックを表示
 /bbdisplay displayMode - 表示モードを切り替える
