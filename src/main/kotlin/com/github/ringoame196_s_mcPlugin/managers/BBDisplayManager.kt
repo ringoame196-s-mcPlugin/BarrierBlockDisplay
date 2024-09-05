@@ -19,6 +19,7 @@ class BBDisplayManager(plugin: Plugin) {
     fun acquisitionBarrierBlockLocations(location: Location, radius: Int): MutableList<Location> {
         val world = location.world
         val locations: MutableList<Location> = mutableListOf()
+        // 半径の座標を取得
         val boundingBox = BoundingBox(
             location.x - radius,
             location.y - radius,
@@ -43,37 +44,37 @@ class BBDisplayManager(plugin: Plugin) {
     }
 
     fun setDisplayBlock(locations: MutableList<Location>, player: Player, material: Material) {
-        for (location in locations) {
+        for (location in locations) { // バリアブロックの場所にディスプレイブロックを設置する
             parquetManager.setBlock(material, location, player)
         }
     }
 
     fun isExecutionPlayer(player: Player): Boolean {
-        val uuid = player.uniqueId.toString()
-        val executionPlayersList = acquisitionExecutionPlayers()
-        return executionPlayersList.contains(uuid)
+        val uuid = player.uniqueId.toString() // プレイヤーのUUID
+        val executionPlayersList = acquisitionExecutionPlayers() // executionPlayerList
+        return executionPlayersList.contains(uuid) // 含まれているか
     }
 
     fun changeExecutionPlayer(player: Player) {
         val message = "${ChatColor.GOLD}表示モードを切り替えました"
         player.sendMessage(message) // メッセージ
-        if (isExecutionPlayer(player)) {
+        if (isExecutionPlayer(player)) { // on -> off
             val radius = config.getInt(CommandConst.RADIUS_KEY)
             deletionExecutionPlayer(player) // 削除する
             hide(player, radius) // デフォルト値の半径を隠す
-        } else {
+        } else { // off -> on
             additionExecutionPlayer(player) // 追加する
         }
     }
 
-    private fun additionExecutionPlayer(player: Player) {
+    private fun additionExecutionPlayer(player: Player) { // 追加
         val uuid = player.uniqueId.toString()
         val executionPlayersList = acquisitionExecutionPlayers() ?: return
         executionPlayersList.add(uuid)
         ymlFileManager.setValue(dataFile, executionPlayersKey, executionPlayersList)
     }
 
-    private fun deletionExecutionPlayer(player: Player) {
+    private fun deletionExecutionPlayer(player: Player) { // 削除
         val uuid = player.uniqueId.toString()
         val executionPlayersList = acquisitionExecutionPlayers() ?: return
         executionPlayersList.remove(uuid)

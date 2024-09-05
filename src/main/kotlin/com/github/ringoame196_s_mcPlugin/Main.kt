@@ -12,6 +12,7 @@ class Main : JavaPlugin() {
         saveDefaultConfig() // configファイル生成
         saveResource("data.yml", false) // dataファイルを生成
         server.pluginManager.registerEvents(PlayerMoveEvent(plugin), plugin)
+        // コマンド
         val command = getCommand("bbdisplay")
         command!!.setExecutor(Command(plugin))
         command.tabCompleter = TabCompleter()

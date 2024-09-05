@@ -16,11 +16,11 @@ class PlayerMoveEvent(plugin: Plugin) : Listener {
         val from = e.from
         val to = e.to ?: return
 
-        if (!bbDisplayManager.isExecutionPlayer(player)) {
+        if (!bbDisplayManager.isExecutionPlayer(player)) { // プレイヤーがexecutionに含まれていない場合 実行しない
             return
         }
 
-        if (from.x != to.x || from.y != to.y || from.z != to.z) {
+        if (from.x != to.x || from.y != to.y || from.z != to.z) { // 目線だけの移動は実行しない
             val barrierBlockLocations = bbDisplayManager.acquisitionBarrierBlockLocations(playerLocation, 3)
             bbDisplayManager.setDisplayBlock(barrierBlockLocations, player, Material.GLASS)
         }
