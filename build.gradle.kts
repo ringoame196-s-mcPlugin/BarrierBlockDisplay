@@ -50,7 +50,7 @@ configure<BukkitPluginDescription> {
     commands {
         register("bbdisplay") {
         description = "バリアブロックの表示関連のコマンド"
-        usage = "/bbdisplay set <ブロック名>"
+        usage = "/bbdisplay <hide,display,displayMode> [<半径>]"
         }
     }
 }
