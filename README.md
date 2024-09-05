@@ -1,12 +1,16 @@
 # BarrierBlockDisplay
 
 ## プラグイン説明
+バリアブロックを表示する
 
 ## コマンド
-
-## 使い方
+/bbdisplay display (半径) - 指定した半径内のバリアブロックを表示
+/bbdisplay displayMode - 表示モードを切り替える
+/bbdisplay hide - 指定した半径内のバリアブロックを非表示にする
 
 ## configファイル
+radius : 3 - defaultの半径の値
+max_radius : 10 - 指定できる最大値
 
 ## 開発環境
 - Minecraft Version : 1.20.1
