@@ -10,6 +10,9 @@ https://github.com/user-attachments/assets/a96a8b10-a065-4032-b527-8dd8fb0cb16e
 /bbdisplay displayMode - 表示モードを切り替える
 /bbdisplay hide - 指定した半径内のバリアブロックを非表示にする
 
+## 前提プラグイン
+- [ProtocolLib](https://github.com/dmulloy2/ProtocolLib/)
+
 ## configファイル
 radius : 3 - defaultの半径の値
 max_radius : 10 - 指定できる最大値
